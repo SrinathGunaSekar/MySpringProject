@@ -40,12 +40,16 @@ public class StudentController {
      }
      
      @PutMapping("/student/update/{id}")
-     public Student updateStudent(@PathVariable int id) {
-    	 Student student = repository.findById(id).get();
-    	 student.setName("sri");
-    	 student.setPercentage(54);
-    	 repository.save(student);
-    	 return student;
+     public Student updateStudent(@PathVariable int id ,@RequestBody Student student) {
+    	 Student stud = repository.findById(id).get();
+    	 stud.setAddress(student.getAddress());
+    	 stud.setName(student.getName());
+    	 stud.setPercentage(student.getPercentage());
+    	 stud.setBranch(student.getBranch());
+//    	 student.setName("sri");
+//    	 student.setPercentage(54);
+    	 repository.save(stud);
+    	 return stud;
      }
      
      @DeleteMapping("student/delete/{id}")

@@ -1,10 +1,12 @@
 package com.springProject.MySpringProject.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,15 +26,19 @@ public class Student {
 	@Column
 	private String branch;
 	
+	@Embedded
+	private Address address;
+	
 	public Student() {
 		
 	}
 	
-	public Student(String name, float percentage, String branch) {
+	public Student(String name, float percentage, String branch , Address address) {
 		super();
 		this.name = name;
 		this.percentage = percentage;
 		this.branch = branch;
+		this.address = address;
 	}
 
 	public int getRollNo() {
@@ -59,6 +65,15 @@ public class Student {
 	public void setBranch(String branch) {
 		this.branch = branch;
 	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [rollNo=" + rollNo + ", name=" + name + ", percentage=" + percentage + ", branch=" + branch
